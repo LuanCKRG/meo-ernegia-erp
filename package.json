@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:biome": "biome check src",
+    "fix:biome": "biome check --write src",
+    "add": "npx shadcn@latest add"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
