@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowLeft, ArrowRight, UserPlus } from "lucide-react"
+import Image from "next/image"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -153,8 +154,9 @@ const RegistrationForm = () => {
 	return (
 		<Card className="w-full max-w-2xl shadow-2xl shadow-primary/20">
 			<CardHeader>
-				<CardTitle className="text-3xl font-headline text-center">Cadastro Express</CardTitle>
-				<CardDescription className="text-center">Siga os passos para cadastrar sua empresa.</CardDescription>
+				<Image className="mx-auto" src="/logo.png" alt="MEO Ernegia" width={300} height={200} />
+				<CardTitle className="text-3xl text-center sr-only">MEO Ernegia</CardTitle>
+				<CardDescription className="text-center">Siga os passos para se cadastrar como parceiro.</CardDescription>
 				<div className="flex w-full items-start pt-6">
 					<div className="flex flex-col items-center flex-1">
 						<div
