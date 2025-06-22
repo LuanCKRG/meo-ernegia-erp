@@ -1,6 +1,8 @@
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
+import type { Database } from "@/types/supabase"
+
 async function createClient() {
 	const cookieStore = await cookies()
 
@@ -11,7 +13,7 @@ async function createClient() {
 		throw new Error("Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY environment variable")
 	}
 
-	return createServerClient(supabaseUrl, supabaseServiceRoleKey, {
+	return createServerClient<Database>(supabaseUrl, supabaseServiceRoleKey, {
 		cookies: {
 			getAll() {
 				return cookieStore.getAll()
