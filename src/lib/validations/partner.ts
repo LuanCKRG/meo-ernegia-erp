@@ -3,7 +3,10 @@ import { z } from "zod"
 export const registerPartnerSchema = z
 	.object({
 		// Step 1
-		cnpj: z.string().length(18, { message: "CNPJ deve conter 14 dígitos. Formato: 00.000.000/0000-00" }),
+		cnpj: z
+			.string()
+			.length(18, { message: "CNPJ deve conter 14 dígitos. Formato: 00.000.000/0000-00" })
+			.transform((val) => val.replace(/\D/g, "")),
 		legalBusinessName: z.string().min(2, { message: "Razão social deve ter no mínimo 2 caracteres." }),
 		contactName: z.string().min(3, { message: "Nome do responsável deve ter no mínimo 3 caracteres." }),
 		contactMobile: z.string().refine((val) => val.length === 14 || val.length === 15, { message: "Celular inválido. Use (00) 00000-0000 ou (00) 0000-0000" }),
