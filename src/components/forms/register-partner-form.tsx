@@ -10,6 +10,7 @@ import { toast } from "sonner"
 
 import { signUpPartner } from "@/actions/auth/sign-up-partner-action"
 import { createPartner } from "@/actions/partners/create-partner-action"
+import { getPartnerByCNPJ } from "@/actions/partners/get-partner-by-cnpj"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -123,6 +124,18 @@ const RegistrationForm = () => {
 	}
 
 	async function onSubmit(data: RegisterPartnerData) {
+		const { success, message, data: partnerData } = await getPartnerByCNPJ({ cnpj: data.cnpj })
+
+		if (!success) {
+			toast.error(message)
+			return
+		}
+
+		if (partnerData) {
+			toast.error("Já existe um parceiro cadastrado com este CNPJ.")
+			return
+		}
+
 		const { success: signUpSuccess, message: signUpMessage, data: userData } = await signUpPartner(data)
 
 		if (!signUpSuccess) {
