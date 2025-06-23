@@ -5,15 +5,17 @@ export type Database = {
 		Tables: {
 			partners: {
 				Row: {
+					active: boolean
 					cep: string
 					city: string
 					cnpj: string
 					complement: string | null
 					contact_email: string
-					contact_mobile: string | null
+					contact_mobile: string
 					contact_name: string
 					created_at: string
 					id: string
+					kdi: number
 					legal_business_name: string
 					neighborhood: string
 					number: string
@@ -21,18 +23,19 @@ export type Database = {
 					status: string
 					street: string
 					updated_at: string
-					user_id: string
 				}
 				Insert: {
+					active?: boolean
 					cep: string
 					city: string
 					cnpj: string
 					complement?: string | null
 					contact_email: string
-					contact_mobile?: string | null
+					contact_mobile: string
 					contact_name: string
 					created_at?: string
 					id?: string
+					kdi?: number
 					legal_business_name: string
 					neighborhood: string
 					number: string
@@ -40,18 +43,19 @@ export type Database = {
 					status?: string
 					street: string
 					updated_at?: string
-					user_id: string
 				}
 				Update: {
+					active?: boolean
 					cep?: string
 					city?: string
 					cnpj?: string
 					complement?: string | null
 					contact_email?: string
-					contact_mobile?: string | null
+					contact_mobile?: string
 					contact_name?: string
 					created_at?: string
 					id?: string
+					kdi?: number
 					legal_business_name?: string
 					neighborhood?: string
 					number?: string
@@ -59,7 +63,6 @@ export type Database = {
 					status?: string
 					street?: string
 					updated_at?: string
-					user_id?: string
 				}
 				Relationships: []
 			}
