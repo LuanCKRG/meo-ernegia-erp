@@ -23,6 +23,7 @@ export type Database = {
 					status: string
 					street: string
 					updated_at: string
+					user_id: string
 				}
 				Insert: {
 					active?: boolean
@@ -43,6 +44,7 @@ export type Database = {
 					status?: string
 					street: string
 					updated_at?: string
+					user_id: string
 				}
 				Update: {
 					active?: boolean
@@ -63,6 +65,7 @@ export type Database = {
 					status?: string
 					street?: string
 					updated_at?: string
+					user_id?: string
 				}
 				Relationships: []
 			}
