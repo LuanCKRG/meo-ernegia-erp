@@ -14,7 +14,7 @@ import {
 	useReactTable,
 	type VisibilityState
 } from "@tanstack/react-table"
-import * as React from "react"
+import { useState } from "react"
 import { DataTablePagination } from "@/components/data-table/data-table-pagination"
 import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -22,13 +22,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[]
 	data: TData[]
+	headerClassName?: string
 }
 
-export const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) => {
-	const [rowSelection, setRowSelection] = React.useState({})
-	const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-	const [sorting, setSorting] = React.useState<SortingState>([])
+export const DataTable = <TData, TValue>({ columns, data, headerClassName }: DataTableProps<TData, TValue>) => {
+	const [rowSelection, setRowSelection] = useState({})
+	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+	const [sorting, setSorting] = useState<SortingState>([])
 
 	const table = useReactTable({
 		data,
@@ -61,7 +62,11 @@ export const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
-									return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>
+									return (
+										<TableHead key={header.id} className={headerClassName}>
+											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										</TableHead>
+									)
 								})}
 							</TableRow>
 						))}

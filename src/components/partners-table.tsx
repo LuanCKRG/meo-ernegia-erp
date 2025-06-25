@@ -128,7 +128,7 @@ const columns: ColumnDef<Partner>[] = [
 ]
 
 const PartnersTable = ({ partners }: { partners: Partner[] }) => {
-	return <DataTable columns={columns} data={partners} />
+	return <DataTable columns={columns} data={partners} headerClassName="bg-muted/50" />
 }
 
 export { columns, PartnersTable }
