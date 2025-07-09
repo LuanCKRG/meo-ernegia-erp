@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowLeft, ArrowRight, UserPlus } from "lucide-react"
-import Image from "next/image"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -12,7 +11,7 @@ import { signUpPartner } from "@/actions/auth/sign-up-partner-action"
 import { createPartner } from "@/actions/partners/create-partner-action"
 import { getPartnerByCNPJ } from "@/actions/partners/get-partner-by-cnpj"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -50,7 +49,7 @@ const brazilianStates = [
 	{ value: "TO", label: "Tocantins" }
 ]
 
-const RegistrationForm = () => {
+const ResgisterPartnerForm = ({ className }: { className?: string }) => {
 	const [step, setStep] = useState(1)
 	const [isFetchingCep, setIsFetchingCep] = useState(false)
 
@@ -165,11 +164,8 @@ const RegistrationForm = () => {
 	}
 
 	return (
-		<Card className="w-full max-w-2xl shadow-2xl shadow-primary/20">
+		<Card className={cn("w-full border-0 shadow-none", className)}>
 			<CardHeader>
-				<Image className="mx-auto" src="/logo.png" alt="MEO Ernegia" width={300} height={200} />
-				<CardTitle className="text-3xl text-center sr-only">MEO Ernegia</CardTitle>
-				<CardDescription className="text-center">Siga os passos para se cadastrar como parceiro.</CardDescription>
 				<div className="flex w-full items-start pt-6">
 					<div className="flex flex-col items-center flex-1">
 						<div
@@ -208,6 +204,7 @@ const RegistrationForm = () => {
 					</div>
 				</div>
 			</CardHeader>
+
 			<CardContent>
 				<Form {...registerPartnerForm}>
 					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -486,4 +483,4 @@ const RegistrationForm = () => {
 	)
 }
 
-export { RegistrationForm }
+export { ResgisterPartnerForm }
