@@ -106,7 +106,7 @@ export const DataTableRowActions = <TData,>({ row }: DataTableRowActionsProps<TD
 						<span className="sr-only">Toggle menu</span>
 					</Button>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent align="end">
+				<DropdownMenuContent align="end" side="left">
 					<DropdownMenuLabel>Ações</DropdownMenuLabel>
 					<DropdownMenuItem>
 						<Pencil />
